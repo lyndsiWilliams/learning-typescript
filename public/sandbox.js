@@ -1,3 +1,4 @@
+"use strict";
 /*
 //---------- Types ----------
 
@@ -107,4 +108,41 @@ let ninja: { name: any, age: any };
 
 ninja = { name: 'yoshi', age: 25 };
 ninja = { name: 25, age: 'yoshi' };  // This is the error stuff TS tries to avoid
-*/ 
+*/
+// ---------- Functions ----------
+// Both of these methods will declare greet as a function type
+// let greet = () => {
+//   console.log("Hello, world!");
+// };
+var greet; // Note: All types are capitalized
+// This variable function can now be altered, but will always live in the greet variable
+// and greet will always be a Function type
+greet = function () {
+    console.log('hello, again!');
+};
+// A ? after parameter name makes it an optional parameter
+//    - optional parameter returns undefined when nothing is passed through
+// UNLESS it's given a default value
+//    - then it's value will become the default value until something passed in replaces it
+//    - this makes it also an optional parameter
+// Always do required parameters first, optional last
+var add = function (a, b, c) {
+    if (b === void 0) { b = 10; }
+    console.log(a + b);
+};
+add(5, 10);
+var minus = function (a, b) {
+    return a + b;
+};
+// In cases like below, TS will infer the type based off of what's returned
+var result = minus(10, 7);
+// Since this returns a number, reassigning the type like so would not work:
+// result = 'something else'
+// You can also infer the result yourself like so:
+var structuredMinus = function (a, b) {
+    return a + b;
+};
+// If a function has no return, the inferred type is 'void' (hover voidFunc to see type)
+var voidFunc = function () {
+    console.log('This function is type: void');
+};
