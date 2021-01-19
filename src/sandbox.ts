@@ -121,7 +121,7 @@ let greet: Function;  // Note: All types are capitalized
 // This variable function can now be altered, but will always live in the greet variable
 // and greet will always be a Function type
 greet = () => {
-  console.log('hello, again!')
+  console.log('Hello, again!')
 };
 
 // A ? after parameter name makes it an optional parameter
