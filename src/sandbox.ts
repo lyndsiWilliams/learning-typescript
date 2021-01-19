@@ -107,7 +107,7 @@ let ninja: { name: any, age: any };
 
 ninja = { name: 'yoshi', age: 25 };
 ninja = { name: 25, age: 'yoshi' };  // This is the error stuff TS tries to avoid
-*/
+
 
 // ---------- Functions ----------
 // Both of these methods will declare greet as a function type
@@ -154,3 +154,4 @@ const structuredMinus = (a: number, b: number): number => {
 const voidFunc = () => {
   console.log('This function is type: void');
 };
+*/
