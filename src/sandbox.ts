@@ -154,4 +154,18 @@ const structuredMinus = (a: number, b: number): number => {
 const voidFunc = () => {
   console.log('This function is type: void');
 };
+
+
+// ---------- Type Aliases ----------
+// Keep code DRY with type aliases like so:
+type stringOrNum = string | number;
+type objWithName = { name: string, uid: stringOrNum };
+
+const logDetails = (uid: stringOrNum, item: string) => {
+  console.log(`${item} has a uid of ${uid}`);
+};
+
+const greet = (user: objWithName) => {
+  console.log(`${user.name} says hello`);
+};
 */
