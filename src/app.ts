@@ -9,6 +9,40 @@
 //     console.log(anchor.href);
 // };
 
+// ---------- Interfaces ----------
+// Used to enforce a structure within classes/objects
+// There is no interface to create an "IsPerson"
+// - This is literally a filter to set structure
+interface IsPerson {
+  name: string;
+  age: number;
+
+  speak(a: string): void;
+  spend(a: number): number;
+};
+
+const me: IsPerson = {
+  name: 'Lyndsi',
+  age: 30,
+
+  // These can change as long as they stay in structure
+  speak(text: string): void {
+    console.log(text);
+  },
+  spend(amount: number): number {
+    console.log('I spent ', amount);
+    return amount;
+  }
+};
+
+const greetPerson = (person: IsPerson) => {
+  console.log('Hello ', person.name);
+};
+
+greetPerson(me)
+
+console.log(me)
+
 // ---------- Modules ----------
 // Only modern browsers support this
 // Import the JS file, not TS

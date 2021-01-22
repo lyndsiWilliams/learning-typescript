@@ -8,6 +8,24 @@
 // if (anchor){
 //     console.log(anchor.href);
 // };
+;
+const me = {
+    name: 'Lyndsi',
+    age: 30,
+    // These can change as long as they stay in structure
+    speak(text) {
+        console.log(text);
+    },
+    spend(amount) {
+        console.log('I spent ', amount);
+        return amount;
+    }
+};
+const greetPerson = (person) => {
+    console.log('Hello ', person.name);
+};
+greetPerson(me);
+console.log(me);
 // ---------- Modules ----------
 // Only modern browsers support this
 // Import the JS file, not TS
