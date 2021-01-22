@@ -11,9 +11,14 @@
 
 // ---------- Classes ----------
 class Invoice {
+  /* Access modifiers:
+  - public: Anyone can access property outside of this class
+  - private: Nobody can access property outside of this class
+    - Can access inside, like in format()
+  */
   client: string;
-  details: string;
-  amount: number;
+  private details: string;
+  public amount: number;
 
   // Constructor gives each instance an initial value of the parameter passed in
   constructor(c: string, d: string, a: number) {
@@ -34,12 +39,14 @@ const invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);
 let invoices: Invoice[] = [];
 invoices.push(invoiceOne);
 invoices.push(invoiceTwo);
-console.log(invoices);
 
 // You can change these objects with dot notation
-invoiceOne.client = 'Yoshi';
-invoiceTwo.amount = 400;
-console.log(invoiceOne, invoiceTwo);
+// invoiceOne.client = 'Yoshi';
+// invoiceTwo.amount = 400;
+
+invoices.forEach(inv => {
+  console.log(inv.client, inv.amount, inv.format());
+});
 
 
 // ---------- Type Casting ----------

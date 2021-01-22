@@ -31,11 +31,12 @@ var invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);
 var invoices = [];
 invoices.push(invoiceOne);
 invoices.push(invoiceTwo);
-console.log(invoices);
 // You can change these objects with dot notation
-invoiceOne.client = 'Yoshi';
-invoiceTwo.amount = 400;
-console.log(invoiceOne, invoiceTwo);
+// invoiceOne.client = 'Yoshi';
+// invoiceTwo.amount = 400;
+invoices.forEach(function (inv) {
+    console.log(inv.client, inv.amount, inv.format());
+});
 // ---------- Type Casting ----------
 // If you need to grab something specific that TS can't predetermine, you can tell TS what it is like so:
 var form = document.querySelector('.new-item-form');
