@@ -9,28 +9,10 @@
 //     console.log(anchor.href);
 // };
 
-// ---------- Classes ----------
-class Invoice {
-  /* Access modifiers:
-  - public: Anyone can access property outside of this class
-  - private: Nobody can access property outside of this class
-    - Can access inside, like in format()
-  */
-  client: string;
-  private details: string;
-  public amount: number;
-
-  // Constructor gives each instance an initial value of the parameter passed in
-  constructor(c: string, d: string, a: number) {
-    this.client = c;
-    this.details = d;
-    this.amount = a;
-  };
-
-  format() {
-    return `${this.client} owes $${this.amount} for ${this.details}.`;
-  };
-};
+// ---------- Modules ----------
+// Only modern browsers support this
+// Import the JS file, not TS
+import { Invoice } from './classes/Invoice.js';
 
 const invoiceOne = new Invoice('Mario', 'Work on the Mario website', 250);
 const invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);

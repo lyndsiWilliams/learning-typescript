@@ -1,4 +1,3 @@
-"use strict";
 // // TS doesn't know if the anchor tag actually exists before compilation
 // // Trying to access this will result in an error unless you either:
 // // - Use an ! at the end
@@ -9,44 +8,32 @@
 // if (anchor){
 //     console.log(anchor.href);
 // };
-// ---------- Classes ----------
-var Invoice = /** @class */ (function () {
-    // Constructor gives each instance an initial value of the parameter passed in
-    function Invoice(c, d, a) {
-        this.client = c;
-        this.details = d;
-        this.amount = a;
-    }
-    ;
-    Invoice.prototype.format = function () {
-        return this.client + " owes $" + this.amount + " for " + this.details + ".";
-    };
-    ;
-    return Invoice;
-}());
-;
-var invoiceOne = new Invoice('Mario', 'Work on the Mario website', 250);
-var invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);
+// ---------- Modules ----------
+// Only modern browsers support this
+// Import the JS file, not TS
+import { Invoice } from './classes/Invoice.js';
+const invoiceOne = new Invoice('Mario', 'Work on the Mario website', 250);
+const invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);
 // This array can now only have Invoice types
-var invoices = [];
+let invoices = [];
 invoices.push(invoiceOne);
 invoices.push(invoiceTwo);
 // You can change these objects with dot notation
 // invoiceOne.client = 'Yoshi';
 // invoiceTwo.amount = 400;
-invoices.forEach(function (inv) {
+invoices.forEach(inv => {
     console.log(inv.client, inv.amount, inv.format());
 });
 // ---------- Type Casting ----------
 // If you need to grab something specific that TS can't predetermine, you can tell TS what it is like so:
-var form = document.querySelector('.new-item-form');
+const form = document.querySelector('.new-item-form');
 // console.log(form.children);
 // Inputs
-var type = document.querySelector('#type');
-var tofrom = document.querySelector('#tofrom');
-var details = document.querySelector('#details');
-var amount = document.querySelector('#amount');
-form.addEventListener('submit', function (e) {
+const type = document.querySelector('#type');
+const tofrom = document.querySelector('#tofrom');
+const details = document.querySelector('#details');
+const amount = document.querySelector('#amount');
+form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
 });
