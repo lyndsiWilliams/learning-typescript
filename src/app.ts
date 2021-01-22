@@ -9,60 +9,79 @@
 //     console.log(anchor.href);
 // };
 
-// ---------- Interfaces ----------
-// Used to enforce a structure within classes/objects
-// There is no interface to create an "IsPerson"
-// - This is literally a filter to set structure
-interface IsPerson {
-  name: string;
-  age: number;
+import { Invoice } from "./classes/Invoice.js";
+import { Payment } from "./classes/Payment.js";
+import { HasFormatter } from "./interfaces/HasFormatter.js";
 
-  speak(a: string): void;
-  spend(a: number): number;
-};
+// // ---------- Interfaces ----------
+// // Used to enforce a structure within classes/objects
+// // There is no interface to create an "IsPerson"
+// // - This is literally a filter to set structure
+// interface IsPerson {
+//   name: string;
+//   age: number;
 
-const me: IsPerson = {
-  name: 'Lyndsi',
-  age: 30,
+//   speak(a: string): void;
+//   spend(a: number): number;
+// };
 
-  // These can change as long as they stay in structure
-  speak(text: string): void {
-    console.log(text);
-  },
-  spend(amount: number): number {
-    console.log('I spent ', amount);
-    return amount;
-  }
-};
+// const me: IsPerson = {
+//   name: 'Lyndsi',
+//   age: 30,
 
-const greetPerson = (person: IsPerson) => {
-  console.log('Hello ', person.name);
-};
+//   // These can change as long as they stay in structure
+//   speak(text: string): void {
+//     console.log(text);
+//   },
+//   spend(amount: number): number {
+//     console.log('I spent ', amount);
+//     return amount;
+//   }
+// };
 
-greetPerson(me)
+// const greetPerson = (person: IsPerson) => {
+//   console.log('Hello ', person.name);
+// };
 
-console.log(me)
+// greetPerson(me)
 
-// ---------- Modules ----------
-// Only modern browsers support this
-// Import the JS file, not TS
-import { Invoice } from './classes/Invoice.js';
+// console.log(me)
 
-const invoiceOne = new Invoice('Mario', 'Work on the Mario website', 250);
-const invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);
+// // ---------- Modules ----------
+// // Only modern browsers support this
+// // Import the JS file, not TS
+// import { Invoice } from './classes/Invoice.js';
+// import { Payment } from './classes/Payment.js';
+// import { HasFormatter } from './interfaces/HasFormatter.js';
 
-// This array can now only have Invoice types
-let invoices: Invoice[] = [];
-invoices.push(invoiceOne);
-invoices.push(invoiceTwo);
+// let documentOne: HasFormatter;
+// let documentTwo: HasFormatter;
+
+// documentOne = new Invoice('Yoshi', 'Web work', 250);
+// documentTwo = new Payment('Mario', 'Plumbing work', 200);
+
+// let docs: HasFormatter[] = [];
+
+// docs.push(documentOne);
+// docs.push(documentTwo);
+
+// console.log(docs);
+
+// const invoiceOne = new Invoice('Mario', 'Work on the Mario website', 250);
+// const invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);
+
+// // This array can now only have Invoice types
+// let invoices: Invoice[] = [];
+// invoices.push(invoiceOne);
+// invoices.push(invoiceTwo);
 
 // You can change these objects with dot notation
 // invoiceOne.client = 'Yoshi';
 // invoiceTwo.amount = 400;
 
-invoices.forEach(inv => {
-  console.log(inv.client, inv.amount, inv.format());
-});
+// invoices.forEach(inv => {
+//   console.log(inv.client, inv.amount, inv.format());
+// });
 
 
 // ---------- Type Casting ----------
@@ -79,10 +98,13 @@ const amount = document.querySelector('#amount') as HTMLInputElement;
 form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
 
-  console.log(
-    type.value,
-    tofrom.value,
-    details.value,
-    amount.valueAsNumber
-  );
+  let doc: HasFormatter;
+
+  if(type.value === 'invoice') {
+    doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+  } else {
+    doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+  };
+
+  console.log(doc);
 });

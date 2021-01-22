@@ -1,5 +1,7 @@
+import { HasFormatter } from '../interfaces/HasFormatter.js';
+
 // ---------- Classes ----------
-export class Invoice {
+export class Invoice implements HasFormatter {
   /* Access modifiers:
   - public: Anyone can access property outside of this class
   - private: Nobody can access property outside of this class
