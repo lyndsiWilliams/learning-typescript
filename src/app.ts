@@ -9,6 +9,39 @@
 //     console.log(anchor.href);
 // };
 
+// ---------- Classes ----------
+class Invoice {
+  client: string;
+  details: string;
+  amount: number;
+
+  // Constructor gives each instance an initial value of the parameter passed in
+  constructor(c: string, d: string, a: number) {
+    this.client = c;
+    this.details = d;
+    this.amount = a;
+  };
+
+  format() {
+    return `${this.client} owes $${this.amount} for ${this.details}.`;
+  };
+};
+
+const invoiceOne = new Invoice('Mario', 'Work on the Mario website', 250);
+const invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);
+
+// This array can now only have Invoice types
+let invoices: Invoice[] = [];
+invoices.push(invoiceOne);
+invoices.push(invoiceTwo);
+console.log(invoices);
+
+// You can change these objects with dot notation
+invoiceOne.client = 'Yoshi';
+invoiceTwo.amount = 400;
+console.log(invoiceOne, invoiceTwo);
+
+
 // ---------- Type Casting ----------
 // If you need to grab something specific that TS can't predetermine, you can tell TS what it is like so:
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
