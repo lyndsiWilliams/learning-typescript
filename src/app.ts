@@ -9,6 +9,28 @@
 //     console.log(anchor.href);
 // };
 
+// ---------- Modules ----------
+// Only modern browsers support this
+// Import the JS file, not TS
+import { Invoice } from './classes/Invoice.js';
+
+const invoiceOne = new Invoice('Mario', 'Work on the Mario website', 250);
+const invoiceTwo = new Invoice('Luigi', 'Work on the Luigi website', 300);
+
+// This array can now only have Invoice types
+let invoices: Invoice[] = [];
+invoices.push(invoiceOne);
+invoices.push(invoiceTwo);
+
+// You can change these objects with dot notation
+// invoiceOne.client = 'Yoshi';
+// invoiceTwo.amount = 400;
+
+invoices.forEach(inv => {
+  console.log(inv.client, inv.amount, inv.format());
+});
+
+
 // ---------- Type Casting ----------
 // If you need to grab something specific that TS can't predetermine, you can tell TS what it is like so:
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
