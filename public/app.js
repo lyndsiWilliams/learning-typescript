@@ -9,6 +9,7 @@
 //     console.log(anchor.href);
 // };
 import { Invoice } from "./classes/Invoice.js";
+import { ListTemplate } from "./classes/ListTemplate.js";
 import { Payment } from "./classes/Payment.js";
 // // ---------- Interfaces ----------
 // // Used to enforce a structure within classes/objects
@@ -72,6 +73,9 @@ const type = document.querySelector('#type');
 const tofrom = document.querySelector('#tofrom');
 const details = document.querySelector('#details');
 const amount = document.querySelector('#amount');
+// list template instance
+const ul = document.querySelector('ul');
+const list = new ListTemplate(ul);
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     let doc;
@@ -82,5 +86,26 @@ form.addEventListener('submit', (e) => {
         doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
     }
     ;
-    console.log(doc);
+    list.render(doc, type.value, 'start');
 });
+// ---------- Generics ----------
+// <T> tells which properties are passed in, otherwise it doesn't know
+// extends will tell how the obj should be structured
+const addUID = (obj) => {
+    let uid = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, obj), { uid });
+};
+let docOne = addUID({ name: 'Yoshi', age: 40 });
+console.log(docOne);
+;
+const docThree = {
+    uid: 1,
+    resourceName: 'person',
+    data: { name: 'shaun' }
+};
+const docFour = {
+    uid: 2,
+    resourceName: 'shoppingList',
+    data: ['bread', 'milk', 'toilet paper']
+};
+console.log(docThree, docFour);

@@ -10,6 +10,7 @@
 // };
 
 import { Invoice } from "./classes/Invoice.js";
+import { ListTemplate } from "./classes/ListTemplate.js";
 import { Payment } from "./classes/Payment.js";
 import { HasFormatter } from "./interfaces/HasFormatter.js";
 
@@ -95,6 +96,10 @@ const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
 const details = document.querySelector('#details') as HTMLInputElement;
 const amount = document.querySelector('#amount') as HTMLInputElement;
 
+// list template instance
+const ul = document.querySelector('ul')!;
+const list = new ListTemplate(ul);
+
 form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
 
@@ -106,5 +111,39 @@ form.addEventListener('submit', (e: Event) => {
     doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
   };
 
-  console.log(doc);
+  list.render(doc, type.value, 'start');
 });
+
+// ---------- Generics ----------
+// <T> tells which properties are passed in, otherwise it doesn't know
+// extends will tell how the obj should be structured
+ const addUID = <T extends {name: string}>(obj: T) => {
+   let uid = Math.floor(Math.random() * 100);
+   return {...obj, uid};
+ };
+
+ let docOne = addUID({ name: 'Yoshi', age: 40 });
+
+ console.log(docOne);
+
+ // With interfaces:
+ // This makes data's type flexible, it assigns the type at Resource construction
+ interface Resource<T> {
+   uid: number;
+   resourceName: string;
+   data: T;
+ };
+
+ const docThree: Resource<object> = {
+   uid: 1,
+   resourceName: 'person',
+   data: { name: 'shaun' }
+ };
+
+ const docFour: Resource<string[]> = {
+   uid: 2,
+   resourceName: 'shoppingList',
+   data: ['bread', 'milk', 'toilet paper']
+ };
+
+ console.log(docThree, docFour);
