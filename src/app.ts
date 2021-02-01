@@ -115,8 +115,11 @@ form.addEventListener('submit', (e: Event) => {
 });
 
 // ---------- Generics ----------
-// <T> tells which properties are passed in, otherwise it doesn't know
-// extends will tell how the obj should be structured
+// <T> captures which properties are passed in, otherwise it doesn't know
+// - It's like props but for structure
+// "extends" will tell how the obj should be structured
+// - otherwise you can pass anything, refuting the purpose of TS
+// - <T extends structureGoes: here>
  const addUID = <T extends {name: string}>(obj: T) => {
    let uid = Math.floor(Math.random() * 100);
    return {...obj, uid};
