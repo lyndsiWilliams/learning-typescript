@@ -115,6 +115,7 @@ form.addEventListener('submit', (e: Event) => {
 });
 
 // ---------- Generics ----------
+// Generics enable things to be passed as wild cards - defined elsewhere
 // <T> captures which properties are passed in, otherwise it doesn't know
 // - It's like props but for structure
 // "extends" will tell how the obj should be structured
